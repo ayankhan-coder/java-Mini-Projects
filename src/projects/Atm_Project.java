@@ -60,19 +60,36 @@ public class Atm_Project {
         Atm atm = new Atm("Ayan Khan", 1234567890l, 1234, 5000,
                 9620868617l, "10/03/2026");
 
+        long enterAccNo = 0;
+        int enterPin = 0;
+
         boolean found = false;
 
         for (int i = 0; i < 3; i++) {
 
-            System.out.print("Enter practice.Account Number : ");
-            long enterAccNo = sc.nextLong();
+            try {
 
-            System.out.print("Enter Pin : ");
-            int enterPin = sc.nextInt();
+                System.out.print("Enter Account Number : ");
+                enterAccNo = sc.nextLong();
+
+                System.out.print("Enter Pin : ");
+                enterPin = sc.nextInt();
+
+            } catch (Exception e) {
+
+                System.out.println("Please Enter Numbers only");
+
+                sc.nextLine();
+
+                i--;
+
+                continue;
+            }
 
             if (atm.login(enterAccNo, enterPin)) {
 
-                System.out.println("WelCome to Your practice.Account");
+                System.out.println("WelCome to Your Account");
+
                 found = true;
 
                 int enterOption = 0;
@@ -84,63 +101,121 @@ public class Atm_Project {
                     System.out.println("3: WithDraw");
                     System.out.println("4: practice.Account Information");
                     System.out.println("5: Exit");
+
                     System.out.println("\t Enter An Option --");
 
-                    enterOption = sc.nextInt();
+                    try {
+
+                        enterOption = sc.nextInt();
+
+                    } catch (Exception e) {
+
+                        System.out.println("Please Enter Correct Option Number");
+
+                        sc.nextLine();
+
+                        continue;
+                    }
+
+                    int enterDepositMoney = 0;
+                    int enterAmount = 0;
 
                     switch (enterOption) {
 
                         case 1:
+
                             System.out.println(atm.getBalance());
+
                             break;
 
                         case 2:
+
                             System.out.print("Enter Amount To Deposit : ");
-                            int enterDepositMoney = sc.nextInt();
+
+                            try {
+
+                                enterDepositMoney = sc.nextInt();
+
+                            } catch (Exception e) {
+
+                                System.out.println("Please Enter Numbers only");
+
+                                sc.nextLine();
+
+                                continue;
+                            }
 
                             if (atm.deposit(enterDepositMoney)) {
+
                                 System.out.println("Deposit Successful");
+
                                 System.out.println("Current Balance : " + atm.getBalance());
+
                             } else {
+
                                 System.out.println("Invalid Amount");
                             }
+
                             break;
 
                         case 3:
+
                             System.out.print("Enter Amount To WithDraw : ");
-                            int enterAmount = sc.nextInt();
+
+                            try {
+
+                                enterAmount = sc.nextInt();
+
+                            } catch (Exception e) {
+
+                                System.out.println("Please Enter Numbers only");
+
+                                sc.nextLine();
+
+                                continue;
+                            }
 
                             if (atm.withDraw(enterAmount)) {
+
                                 System.out.println("WithDraw Successful");
+
                                 System.out.println("Current Balance : " + atm.getBalance());
+
                             } else {
+
                                 System.out.println("Invalid Balance");
                             }
+
                             break;
 
                         case 4:
+
                             atm.getAccountInfo();
+
                             break;
 
                         case 5:
+
                             System.out.println(" ~~ THANK-YOU  VISIT AGAIN ...");
+
                             break;
 
                         default:
+
                             System.out.println("Invalid Option *^$# ");
                     }
                 }
 
                 break;
-
             } else {
+
                 System.out.println("Invalid Information");
             }
         }
 
         if (!found) {
+
             System.out.println("Too many failed attempts");
         }
-
     }
 }
