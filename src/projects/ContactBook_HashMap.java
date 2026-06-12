@@ -21,7 +21,7 @@ public class ContactBook_HashMap {
             System.out.println("1-addContact 2-SearchContact 3-Delete 4-ViewAllContacts 5-Exit");
             System.out.println("--------------------------------------------------");
 
-            System.out.print("Enter Option Number : ");
+            System.out.print("$ Enter Option Number : ");
 
             try {
                 option = sc.nextInt();
@@ -35,10 +35,10 @@ public class ContactBook_HashMap {
             switch (option) {
 
                 case 1:
-                    System.out.print("Enter Name : ");
+                    System.out.print("$ Enter Name : ");
                     sc.nextLine();
                     name = sc.nextLine();
-                    System.out.print("Enter Number : ");
+                    System.out.print("$ Enter Number : ");
                     number = sc.nextLine();
                     if (map.containsKey(name)){
                         System.out.println("~~~~~~ Contact Already Exists ~~~~~~\n");
@@ -49,18 +49,18 @@ public class ContactBook_HashMap {
                     break;
 
                 case 2:
-                    System.out.print("Enter Name to Search : ");
+                    System.out.print("$ Enter Name to Search : ");
                     sc.nextLine();
                     name = sc.nextLine();
                     if (map.containsKey(name)) {
-                        System.out.println(name + " -> " + map.get(name));
+                        System.out.println(name + " -> " + map.get(name)+"\n");
                     } else {
                         System.out.println("~~~~~~ Contact Does not Exists ~~~~~~\n");
                     }
                     break;
 
                 case 3:
-                    System.out.print("Enter Name to Delete : ");
+                    System.out.print("$ Enter Name to Delete : ");
                     sc.nextLine();
                     name = sc.nextLine();
                     if (map.containsKey(name)){
