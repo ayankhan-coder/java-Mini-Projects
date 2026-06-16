@@ -5,7 +5,7 @@ import java.util.Deque;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class PatientManagment {
+public class PatientManagement {
     public static void main(String[] args) {
 
         Deque<String> patient = new ArrayDeque<>();
