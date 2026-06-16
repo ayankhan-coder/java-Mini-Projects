@@ -1,23 +1,27 @@
 package projects;
+// PATIENT MANAGEMENT USING PRIORITY QUEUE*/
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.InputMismatchException;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class PatientManagement1 {
+public class PatientManagement2 {
     public static void main(String[] args) {
-
-        Deque<String> patient = new ArrayDeque<>();
+        PriorityQueue<String> patient = new PriorityQueue<>();
         Scanner sc = new Scanner(System.in);
 
+        patient.add("3-khan");
+        patient.add("1-ayan");
+        patient.add("2-ahmed");
+
         int choice=0;
+        int priority;
         String name;
 
         while (true) {
 
-            System.out.println("1-AddNormalPatient 2-AddEmergencyPatient 3-CheckPatient\n" +
-                    "4-ViewNextPatient 5-ViewAll 6-TotalPatients 7-Exit");
+            System.out.println("1-AddPatient 2-CheckPatient 3-ViewNextPatient\n" +
+                    "4-ViewAll 5-TotalPatients 6-Exit");
             System.out.println("-------------------------------------------------------------------");
 
             System.out.print("$ Enter The Option Number : ");
@@ -36,19 +40,13 @@ public class PatientManagement1 {
                     System.out.print("Enter Patient Name : ");
                     sc.nextLine();
                     name = sc.nextLine();
-                    patient.addLast(name);
-                    System.out.println("~~~~~ "+name+" Added ~~~~~\n");
+                    System.out.print("Enter Priority : ");
+                    priority = sc.nextInt();
+                    patient.add(priority+"-"+name);
+                    System.out.println("~~~~~ "+priority+"-"+name+" Added ~~~~~\n");
                     break;
 
                 case 2:
-                    System.out.print("Enter Patient Name : ");
-                    sc.nextLine();
-                    name = sc.nextLine();
-                    patient.addFirst(name);
-                    System.out.println("~~~~~ "+name+" Added ~~~~~\n");
-                    break;
-
-                case 3:
                     if (patient.isEmpty()){
                         System.out.println("~~~~~ No Patients ~~~~~\n");
                     }else {
@@ -56,15 +54,15 @@ public class PatientManagement1 {
                     }
                     break;
 
-                case 4:
+                case 3:
                     if (patient.isEmpty()){
-                        System.out.println("~~~~~ No Customers ~~~~~\n");
+                        System.out.println("~~~~~ No Patients ~~~~~\n");
                     }else {
                         System.out.println("~~~~~ "+patient.peek()+" ~~~~~\n");
                     }
                     break;
 
-                case 5:
+                case 4:
                     if (patient.isEmpty()){
                         System.out.println("~~~~~ No Patients ~~~~~\n");
                     }else {
@@ -74,19 +72,16 @@ public class PatientManagement1 {
                     }
                     break;
 
-                case 6 :
-                    if (patient.isEmpty()){
-                        System.out.println("~~~~~ "+patient.size()+" ~~~~~\n");
-                    }else {
-                        System.out.println("~~~~~ "+patient.size()+" ~~~~~\n");
-                    }
+                case 5:
+                    System.out.println("~~~~~ "+patient.size()+" ~~~~~\n");
                     break;
 
-                case 7:
+                case 6:
                     return;
 
                 default:
                     System.out.println("#$# Please Enter Correct Option Number #$#\n");
+
 
             }
         }

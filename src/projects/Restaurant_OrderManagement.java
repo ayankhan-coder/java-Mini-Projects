@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Restaurant_OrderManagement_UsingQueue {
+public class Restaurant_OrderManagement {
     public static void main(String[] args) {
         Queue<String> customer = new LinkedList<>();
         Scanner sc = new Scanner(System.in);
