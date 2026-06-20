@@ -1,4 +1,4 @@
-package projects;
+package projects.collection;
 // PATIENT MANAGEMENT USING PRIORITY QUEUE*/
 
 import java.util.InputMismatchException;

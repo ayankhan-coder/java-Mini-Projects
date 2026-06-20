@@ -1,4 +1,4 @@
-package projects;
+package projects.collection;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
