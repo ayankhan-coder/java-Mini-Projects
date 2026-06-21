@@ -1,5 +1,4 @@
 package projects.collection.objects;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,26 +6,26 @@ class Student{
     String name;
     int rollNum;
     int marks;
+    Student(String name,int rollNum,int marks){
+        this.name = name;
+        this.rollNum = rollNum;
+        this.marks = marks;
+    }
+    Student(String name){
+        this.name = name;
+    }
 
-}public class StudentObject {
+}
+public class StudentObject {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Student student1 = new Student();
-        Student student2 = new Student();
-        Student student3 = new Student();
 
-        student1.name = "ayan";
-        student1.rollNum = 9;
-        student1.marks = 85;
 
-        student2.name = "akmal";
-        student2.rollNum = 18;
-        student2.marks = 55;
+        Student student1 = new Student("ayan",9,85);
+        Student student2 = new Student("akmal",18,55);
+        Student student3 = new Student("hussain",8,20);
 
-        student3.name = "hussain";
-        student3.rollNum= 8;
-        student3.marks = 90;
 
         ArrayList<Student> students = new ArrayList<>();
         students.add(student1);
@@ -63,19 +62,16 @@ class Student{
                 case 1:
                     try {
 
-                        System.out.print("$ Enter projects.collection.objects.Student Name To Add : ");
+                        System.out.print("$ Enter Student Name To Add : ");
                         sc.nextLine();
                         name = sc.nextLine();
-                        System.out.print("$ Enter projects.collection.objects.Student Age : ");
+                        System.out.print("$ Enter Student Age : ");
                         rollNum = sc.nextInt();
-                        System.out.print("$ Enter projects.collection.objects.Student Marks : ");
+                        System.out.print("$ Enter Student Marks : ");
                         marks = sc.nextInt();
-                        Student s = new Student();
-                        s.name = name;
-                        s.rollNum = rollNum;
-                        s.marks = marks;
+                        Student s = new Student(name,rollNum,marks);
                         students.add(s);
-                        System.out.println("~~~~~~ projects.collection.objects.Student Added ~~~~~~\n");
+                        System.out.println("~~~~~~ Student Added ~~~~~~\n");
                     }catch (Exception e){
                         System.out.println("~~~~~~ INVALID INFORMATION ~~~~~~\n");
                         sc.nextLine();
@@ -85,7 +81,7 @@ class Student{
 
                 case 2:
                     boolean find = false;
-                    System.out.print("Enter projects.collection.objects.Student Name to Search : ");
+                    System.out.print("Enter Student Name to Search : ");
                     sc.nextLine();
                     name = sc.nextLine();
                     for (Student s : students){
@@ -108,14 +104,14 @@ class Student{
 
                 case 3:
                     boolean found = false;
-                    System.out.print("$ Enter projects.collection.objects.Student Name to Delete : ");
+                    System.out.print("$ Enter Student Name to Delete : ");
                     sc.nextLine();
                     name = sc.nextLine();
                     for (int i=0; i<students.size(); i++){
                         if (students.get(i).name.equalsIgnoreCase(name)){
                             students.remove(i);
                             found = true;
-                            System.out.println("~~~~~~ projects.collection.objects.Student Deleted ~~~~~~\n");
+                            System.out.println("~~~~~~ Student Deleted ~~~~~~\n");
                         }
                     }
                     if (!found){
@@ -126,7 +122,7 @@ class Student{
                 case 4:
                     boolean flag = false;
                     try {
-                        System.out.print("$ Enter projects.collection.objects.Student Name to Update : " );
+                        System.out.print("$ Enter Student Name to Update : " );
                         sc.nextLine();
                         name = sc.nextLine();
                         for (Student s : students) {
@@ -141,7 +137,7 @@ class Student{
                                 s.rollNum = rollNum;
                                 s.marks = marks;
                                 flag = true;
-                                System.out.println("~~~~~~ projects.collection.objects.Student Updated ~~~~~~\n");
+                                System.out.println("~~~~~~ Student Updated ~~~~~~\n");
                                 break;
 
 
@@ -154,7 +150,7 @@ class Student{
                         continue;
                     }
                     if (!flag){
-                        System.out.println("~~~~~~ projects.collection.objects.Student DoesNot Exists ~~~~~~\n");
+                        System.out.println("~~~~~~ Student DoesNot Exists ~~~~~~\n");
 
                     }
                     break;
