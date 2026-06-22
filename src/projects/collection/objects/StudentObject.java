@@ -1,8 +1,9 @@
 package projects.collection.objects;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
-class Student{
+class Student implements Comparable<Student>{
     String name;
     int rollNum;
     int marks;
@@ -11,19 +12,19 @@ class Student{
         this.rollNum = rollNum;
         this.marks = marks;
     }
-    Student(String name){
-        this.name = name;
-    }
 
+    @Override
+    public int compareTo(Student other) {
+        return other.marks - this.marks;
+    }
 }
+
 public class StudentObject {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-
-
-        Student student1 = new Student("ayan",9,85);
-        Student student2 = new Student("akmal",18,55);
+        Student student1 = new Student("akmal",18,55);
+        Student student2 = new Student("ayan",9,85);
         Student student3 = new Student("hussain",8,20);
 
 
@@ -40,7 +41,8 @@ public class StudentObject {
         while (true) {
 
             System.out.println(
-                    "1-AddStudent 2-SearchStudent 3-DeleteStudent 4-UpdateStudent 5-ViewAll 6:TotalStudents 7-Exit\n"
+                    "1-AddStudent 2-SearchStudent 3-DeleteStudent 4-UpdateStudent 5-ViewAll 6:TotalStudents" +
+                            " 7-FindTopper 8-AverageMarks 9-SortByMarks 10-Exit\n"
             );
 
             System.out.println(
@@ -65,7 +67,7 @@ public class StudentObject {
                         System.out.print("$ Enter Student Name To Add : ");
                         sc.nextLine();
                         name = sc.nextLine();
-                        System.out.print("$ Enter Student Age : ");
+                        System.out.print("$ Enter Student RollNum : ");
                         rollNum = sc.nextInt();
                         System.out.print("$ Enter Student Marks : ");
                         marks = sc.nextInt();
@@ -112,6 +114,7 @@ public class StudentObject {
                             students.remove(i);
                             found = true;
                             System.out.println("~~~~~~ Student Deleted ~~~~~~\n");
+                            break;
                         }
                     }
                     if (!found){
@@ -170,6 +173,48 @@ public class StudentObject {
                     break;
 
                 case 7:
+                    if (students.isEmpty()){
+                        System.out.println("~~~~~~ No students in the list ~~~~~~\n");
+                    }else {
+                        Student topper = students.get(0);
+                        for (Student s : students) {
+                            if (s.marks > topper.marks) {
+                                topper = s;
+                            }
+                        }
+                        System.out.println("~~~~ Topper = " + topper.name + ", Marks = " + topper.marks + " ~~~~\n");
+                    }
+                    break;
+                case 8:
+                    if (students.isEmpty()){
+                        System.out.println("~~~~~~ No students in the list ~~~~~~\n");
+                    }else {
+                        int total = 0;
+                        for (Student s : students){
+                            total = total + s.marks;
+                        }
+                        int average = total / students.size();
+                        System.out.println("~~~~~ Average marks: "+ average+" ~~~~~\n");
+                    }
+                    break;
+                case 9:
+                    if (students.isEmpty()){
+                        System.out.println("~~~~~~ No students in the list ~~~~~~\n");
+                    }else {
+                        Collections.sort(students);
+                        for (Student st : students){
+                            System.out.println(
+                                    "Name : " + st.name +
+                                            " RollNum : " + st.rollNum +
+                                            " Marks : " + st.marks +"\n"
+                            );
+                        }
+                        break;
+
+                    }
+
+
+                case 10:
                     return;
 
                 default:
