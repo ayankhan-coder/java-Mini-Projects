@@ -1,6 +1,7 @@
 package projects.collection.objects;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 class Student implements Comparable<Student>{
@@ -16,6 +17,13 @@ class Student implements Comparable<Student>{
     @Override
     public int compareTo(Student other) {
         return other.marks - this.marks;
+    }
+}
+class RollComparator implements Comparator<Student>{
+    @Override
+    public int compare(Student s1, Student s2) {
+        return s1.rollNum - s2.rollNum;
+
     }
 }
 
@@ -41,8 +49,8 @@ public class StudentObject {
         while (true) {
 
             System.out.println(
-                    "1-AddStudent 2-SearchStudent 3-DeleteStudent 4-UpdateStudent 5-ViewAll 6:TotalStudents" +
-                            " 7-FindTopper 8-AverageMarks 9-SortByMarks 10-Exit\n"
+                    "1-AddStudent 2-SearchStudent 3-DeleteStudent 4-UpdateStudent 5-ViewAll \n6-TotalStudents" +
+                            " 7-FindTopper 8-AverageMarks 9-SortByMarks 10-SortByRollNum 15-Exit\n"
             );
 
             System.out.println(
@@ -213,8 +221,24 @@ public class StudentObject {
 
                     }
 
-
                 case 10:
+                    RollComparator rollComparator = new RollComparator();
+                    if (students.isEmpty()){
+                        System.out.println("~~~~~~ No students in the list ~~~~~~\n");
+                    }else {
+                        Collections.sort(students,rollComparator);
+                        for (Student st : students){
+                            System.out.println(
+                                    "Name : " + st.name +
+                                            " RollNum : " + st.rollNum +
+                                            " Marks : " + st.marks +"\n"
+                            );
+                        }
+                    }
+                    break;
+
+
+                case 15:
                     return;
 
                 default:
