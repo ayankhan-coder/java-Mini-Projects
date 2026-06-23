@@ -5,13 +5,28 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 class Student implements Comparable<Student>{
-    String name;
-    int rollNum;
-    int marks;
-    Student(String name,int rollNum,int marks){
+    private String name;
+    private int rollNum;
+    private int marks;
+    Student(String name ,int rollNum,int marks){
         this.name = name;
         this.rollNum = rollNum;
         this.marks = marks;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getRollNum(){
+        return rollNum;
+    }
+    public void setMarks(int marks){
+        this.marks = marks;
+    }
+    public int getMarks(){
+        return marks;
     }
 
     @Override
@@ -19,10 +34,11 @@ class Student implements Comparable<Student>{
         return other.marks - this.marks;
     }
 }
+
 class RollComparator implements Comparator<Student>{
     @Override
     public int compare(Student s1, Student s2) {
-        return s1.rollNum - s2.rollNum;
+        return s1.getRollNum() - s2.getRollNum();
 
     }
 }
@@ -34,7 +50,6 @@ public class StudentObject {
         Student student1 = new Student("akmal",18,55);
         Student student2 = new Student("ayan",9,85);
         Student student3 = new Student("hussain",8,20);
-
 
         ArrayList<Student> students = new ArrayList<>();
         students.add(student1);
@@ -95,11 +110,11 @@ public class StudentObject {
                     sc.nextLine();
                     name = sc.nextLine();
                     for (Student s : students){
-                        if (s.name.equalsIgnoreCase(name)) {
+                        if (s.getName().equalsIgnoreCase(name)) {
                             System.out.println(
-                                    "Name : " + s.name +
-                                            " RollNum : " + s.rollNum +
-                                            " Marks : " + s.marks + "\n"
+                                    "Name : " + s.getName() +
+                                            " RollNum : " + s.getRollNum() +
+                                            " Marks : " + s.getMarks() + "\n"
 
                             );
                             find = true;
@@ -118,7 +133,7 @@ public class StudentObject {
                     sc.nextLine();
                     name = sc.nextLine();
                     for (int i=0; i<students.size(); i++){
-                        if (students.get(i).name.equalsIgnoreCase(name)){
+                        if (students.get(i).getName().equalsIgnoreCase(name)){
                             students.remove(i);
                             found = true;
                             System.out.println("~~~~~~ Student Deleted ~~~~~~\n");
@@ -137,16 +152,13 @@ public class StudentObject {
                         sc.nextLine();
                         name = sc.nextLine();
                         for (Student s : students) {
-                            if (s.name.equalsIgnoreCase(name)) {
+                            if (s.getName().equalsIgnoreCase(name)) {
                                 System.out.print("$ Enter New Name : " );
                                 name = sc.nextLine();
-                                System.out.print("$ Enter rollNum : " );
-                                rollNum = sc.nextInt();
-                                System.out.println("$ Enter Marks : " );
+                                System.out.print("$ Enter Marks : " );
                                 marks = sc.nextInt();
-                                s.name = name;
-                                s.rollNum = rollNum;
-                                s.marks = marks;
+                                s.setName(name);
+                                s.setMarks(marks);
                                 flag = true;
                                 System.out.println("~~~~~~ Student Updated ~~~~~~\n");
                                 break;
@@ -169,9 +181,9 @@ public class StudentObject {
                 case 5:
                     for (Student st : students){
                         System.out.println(
-                                "Name : " + st.name +
-                                        " RollNum : " + st.rollNum +
-                                        " Marks : " + st.marks +"\n"
+                                "Name : " + st.getName() +
+                                        " RollNum : " + st.getRollNum() +
+                                        " Marks : " + st.getMarks() +"\n"
                         );
                     }
                     break;
@@ -186,25 +198,27 @@ public class StudentObject {
                     }else {
                         Student topper = students.get(0);
                         for (Student s : students) {
-                            if (s.marks > topper.marks) {
+                            if (s.getMarks() > topper.getMarks()) {
                                 topper = s;
                             }
                         }
-                        System.out.println("~~~~ Topper = " + topper.name + ", Marks = " + topper.marks + " ~~~~\n");
+                        System.out.println("~~~~ Topper = " + topper.getName() + ", Marks = " + topper.getMarks() + " ~~~~\n");
                     }
                     break;
+
                 case 8:
                     if (students.isEmpty()){
                         System.out.println("~~~~~~ No students in the list ~~~~~~\n");
                     }else {
                         int total = 0;
                         for (Student s : students){
-                            total = total + s.marks;
+                            total = total + s.getMarks();
                         }
                         int average = total / students.size();
                         System.out.println("~~~~~ Average marks: "+ average+" ~~~~~\n");
                     }
                     break;
+
                 case 9:
                     if (students.isEmpty()){
                         System.out.println("~~~~~~ No students in the list ~~~~~~\n");
@@ -212,9 +226,9 @@ public class StudentObject {
                         Collections.sort(students);
                         for (Student st : students){
                             System.out.println(
-                                    "Name : " + st.name +
-                                            " RollNum : " + st.rollNum +
-                                            " Marks : " + st.marks +"\n"
+                                    "Name : " + st.getName() +
+                                            " RollNum : " + st.getRollNum() +
+                                            " Marks : " + st.getMarks()+"\n"
                             );
                         }
                         break;
@@ -229,14 +243,13 @@ public class StudentObject {
                         Collections.sort(students,rollComparator);
                         for (Student st : students){
                             System.out.println(
-                                    "Name : " + st.name +
-                                            " RollNum : " + st.rollNum +
-                                            " Marks : " + st.marks +"\n"
+                                    "Name : " + st.getName() +
+                                            " RollNum : " + st.getRollNum() +
+                                            " Marks : " + st.getMarks() +"\n"
                             );
                         }
                     }
                     break;
-
 
                 case 15:
                     return;
